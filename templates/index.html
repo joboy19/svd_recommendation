@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Recommender System
+        </title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="static/script.js"></script>
+    </head>
+    <body>
+
+         <div class="container" id="login">
+               <div class="row">
+                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                   <div class="card card-signin my-5">
+                     <div class="card-body">
+                       <h5 class="card-title text-center">Sign In</h5>
+                       <form class="form-signin" id="form_login">
+                         <div class="form-label-group">
+                           <input id="username" class="form-control" placeholder="Username" required autofocus>
+                         </div>
+           
+                         <div class="form-label-group">
+                           <input type="password" id="password" class="form-control" placeholder="Password" required>
+                         </div>
+                         <div class="checkbox">
+                            <label><input type="checkbox" value="" id="signup">Sign Up</label>
+                          </div>
+                          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+                         </form>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+         </div>
+
+         <div class="container" id="main" style="display: none;">
+            <div class="row mt-3">
+              <div class = "col-md-4">
+                     <div class="card">
+                        <div class="card-body">
+                           <form id="form_user">
+                              <div class="form-group">
+                                 <label for="username_update">Username:</label>
+                                 <input class="form-control" id="username_main">
+                              </div>
+                              <button type="submit" class="btn btn-secondary">Update Details</button>
+                           </form>                     
+                        
+                        </div>
+                     </div>
+                
+                <div>
+                  <div class="card mt-3">
+                    <div class="card-body">
+                          <form id="form_rating">
+                              <label>Make/Change/Delete a Rating:</label>
+                              <div id="form_rating" class="form-row">
+                                <div class="col">
+                                  <input id="bookid" class="form-control" type="number" min="1" placeholder="Book ID">
+                                </div>
+                                <div class = "col">
+                                  <select class="custom-select" id="rating">
+                                      <option value="0">0</option>
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                      <option value="-1">Remove Rating</option>
+                                  </select>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-secondary">Confirm</button>
+                                </div>
+                              
+                              </div>
+                            </form>
+                      </div>
+                      </div>
+                    </div>
+                 </div>
+                <div class = "col-md-8">
+                  <table class = "table" id ="table">
+                    <thead>
+                      <tr>
+                        <th scope = "col">Book ID</th>
+                        <th scope = "col">Book Name</th>
+                        <th scope = "col">Book Genre</th>
+                        <th scope = "col">Your Rating</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    </table>
+                  </table>
+                </div>
+            </div>
+
+         </div>
+    </body>
