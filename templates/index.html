@@ -4,6 +4,7 @@
         <title>
             Recommender System
         </title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <!-- jQuery library -->
@@ -13,15 +14,16 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="static/script.js"></script>
+        <script type="text/javascript" src="static/translation.js" id="translation"></script>
     </head>
     <body>
 
          <div class="container" id="login">
-               <div class="row">
+               <div class="row max-size">
                  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                    <div class="card card-signin my-5">
                      <div class="card-body">
-                       <h5 class="card-title text-center">Sign In</h5>
+                       <h5 class="card-title text-center" id="signin-text">Sign In</h5>
                        <form class="form-signin" id="form_login">
                          <div class="form-label-group">
                            <input id="username" class="form-control" placeholder="Username" required autofocus>
@@ -33,7 +35,7 @@
                          <div class="checkbox">
                             <label><input type="checkbox" value="" id="signup">Sign Up</label>
                           </div>
-                          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+                          <button class="btn btn-lg btn-primary btn-block" type="submit" id="signin-button">Sign In</button>
                          </form>
                      </div>
                    </div>
@@ -41,17 +43,27 @@
                </div>
          </div>
 
-         <div class="container" id="main" style="display: none;">
-            <div class="row mt-3">
-              <div class = "col-md-4">
+         <nav class="navbar navbar-light bg-light" style="display:none;" id="nav">
+          <a class="navbar-brand">Bookder</a>
+          <div class="my-2 my-sm-0">
+            <button class="btn btn-outline-success" id="nation">Spanish</button>
+            <button class="btn btn-outline-success" id="button-logout">Log Out</button>
+          </div>
+         </nav>
+
+         <div class="container " id="main" style="display: none; max-width: 90%">
+            <div class="row mt-3" style="width: 100%">
+              <div class = "col-3">
                      <div class="card">
                         <div class="card-body">
                            <form id="form_user">
                               <div class="form-group">
-                                 <label for="username_update">Username:</label>
+                                 <label for="username_update" id="username-label">Username:</label>
                                  <input class="form-control" id="username_main">
+                              <div class="mt-1">
+                              <button type="submit" class="btn btn-secondary" id="username-details">Update Details</button>
                               </div>
-                              <button type="submit" class="btn btn-secondary">Update Details</button>
+                              </div>
                            </form>                     
                         
                         </div>
@@ -59,68 +71,97 @@
                   <div class="card mt-3">
                     <div class="card-body">
                           <form id="form_rating">
-                              <label>Make/Change/Delete a Rating:</label>
+                              <label id="rating-label">Make/Change/Delete a Rating:</label>
                               <div id="form_rating" class="form-row">
                                 <div class="col">
                                   <input id="bookid" class="form-control" type="number" min="1" placeholder="Book ID">
                                 </div>
                                 <div class = "col">
                                   <select class="custom-select" id="rating">
-                                      <option value="0">0</option>
                                       <option value="1">1</option>
                                       <option value="2">2</option>
                                       <option value="3">3</option>
                                       <option value="4">4</option>
                                       <option value="5">5</option>
-                                      <option value="-1">Remove Rating</option>
+                                      <option value="-1" id="remove-tag">Remove Rating</option>
                                   </select>
                                 </div>
                                 <div class="col">
-                                    <button type="submit" class="btn btn-secondary">Confirm</button>
-                                </div>
-                              
-                              </div>
-                            </form>
-                      </div>
-                      </div>
-                    </div>
-                 <div class="card md-3">
-                    <div class="card-body">
-                          <form id="form_rating">
-                              <label>Add a book to the dataset:</label>
-                              <div id="form_rating">
-
-                                <div class="col">
-                                  <input id="name" class="form-control" type="number" min="1" placeholder="Book Name">
-                                </div>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <input id="genre" class="form-control" type="number" min="1" placeholder="Genre">
-                                      </div>
-                                  <div class="col">
-                                      <button type="submit" class="btn btn-secondary">Confirm</button>
-                                  </div>
+                                    <button type="submit" class="btn btn-secondary" id="confirm-button">Confirm</button>
                                 </div>
                               
                               </div>
                           </form>
                     </div>
                   </div>
+                  <div class="card mt-3">
+                      <div class="card-body">
+                            <form id="form_book">
+                                <label id="label-addbook">Add a book to the dataset:</label>
+                                <div id="form_book">
+
+                                  
+                                  <input id="name" class="form-control" type="test" placeholder="Book Name">
+                                  
+                                  <div class="form-row mt-1">
+                                      <div class="col">
+                                          <input id="genre" class="form-control" type="text" placeholder="Genre">
+                                        </div>
+                                      <div class="col">
+                                          <button type="submit" class="btn btn-secondary" id="confirm-button2">Confirm</button>
+                                      </div>
+                                  </div>
+                                
+                                </div>
+                            </form>
+                      </div>
+                  </div>
+                  <div class="card mt-3">
+                      <div class="card-body">
+                            <form id="form-search">
+                                <label id="label-searchbook">Search For a Book:</label>
+                                <div id="form_book">
+
+                                  
+                                  <input id="searchname" class="form-control" type="test" placeholder="Book Name">
+                                  <button type="submit" class="btn btn-secondary mt-1" id="search-button">Search</button>
+                                
+                                </div>
+                                
+                                <label class = "mt-1" id="outLabel" ></label>
+                            </form>
+                      </div>
+                  </div>
                 </div>
-                <div class = "col-md-8">
+                <div class = "col">
+                  <label id="label-main">Your Book Ratings:</label>
                   <table class = "table" id ="table">
                     <thead>
                       <tr>
-                        <th scope = "col">Book ID</th>
-                        <th scope = "col">Book Name</th>
-                        <th scope = "col">Book Genre</th>
-                        <th scope = "col">Your Rating</th>
+                        <th scope = "col" id="tag-book">Book ID</th>
+                        <th scope = "col" id="tag-name">Book Name</th>
+                        <th scope = "col" id="tag-genre">Book Genre</th>
+                        <th scope = "col" id="tag-rating">Your Rating</th>
                       </tr>
                     </thead>
                     <tbody>
 
                     </tbody>
-                    </table>
+                  </table>
+                </div>
+                <div class = "col">
+                  <label id="label-recom">Your Book Recommendations:</label>
+                  <table class = "table" id ="table2">
+                    <thead>
+                      <tr>
+                        <th scope = "col" id="tag-book2">Book ID</th>
+                        <th scope = "col" id="tag-name2">Book Name</th>
+                        <th scope = "col" id="tag-genre2">Book Genre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
                   </table>
                 </div>
             </div>
