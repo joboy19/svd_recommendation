@@ -4,13 +4,13 @@ import json
 import csv
 
 from recommendations import make_prediction
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, url_for
 
 app = Flask(__name__)
 app.secret_key = "this_is_a_secret"
 
 
-
+##getID for a single user
 def getID(username):
     with open("data/users.csv", "r", encoding='utf-8', newline='\n') as data1:
         for line in data1:
@@ -19,6 +19,7 @@ def getID(username):
                 return data[0]
     return "False"
 
+#get individual ratings for each user
 @app.route("/get_ratings", methods=["GET"])
 def get_ratings():
     out = {}
@@ -31,6 +32,7 @@ def get_ratings():
         return json.dumps(out)
     return "False"
 
+#get book details from an id
 def get_book(id_):
     with open("data/books.csv", "r", encoding='utf-8', newline='\n') as data1:
         for line in data1:
@@ -39,6 +41,7 @@ def get_book(id_):
                 return data[1], data[2]
     return "False" 
 
+#default page render 
 @app.route('/')
 def hello_world():
     return render_template("index.html")
@@ -62,7 +65,7 @@ def signup(username, password):
                 return "False"
     with open("data/users.csv", "a", encoding='utf-8', newline="\n") as data1:
         writer = csv.writer(data1)
-        writer.writerow([int(last_id)+1,username,password])
+        writer.writerow([int(last_id)+100000,username,password])
         data1.close()
     return True
         
@@ -76,6 +79,7 @@ def login():
     val = checkuser(request.args["username"], request.args["password"])
     if val:
         session["id"] = getID(request.args["username"])
+        print(session["id"], request.args["username"])
         return "True"
     return "False"
 

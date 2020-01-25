@@ -14,6 +14,7 @@ function update_ratings(){
                         vals[key][1] + '</td><td>' + vals[key][2] + 
                         '</td><td>' + vals[key][0] + '</td></tr>');
                 }
+                get_recommendations();
             } 
         }
     });
@@ -143,9 +144,10 @@ $( document ).ready(function(event){
     $("#nation").click( function() {
         toggle_nation();
     });
+
     $("#button-logout").click( function() {
         $.ajax({
-            url: "/login",
+            url: "/logout",
             method:"post",
             success: function(data){
                 location.reload()
